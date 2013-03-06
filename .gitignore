@@ -48,7 +48,7 @@ local.properties
 *_p.c
 *.ilk
 *.meta
-*.obj
+#*.obj
 *.pch
 *.pdb
 *.pgc
@@ -161,3 +161,7 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+# Codeblocks
+*.depend
+*.layout
