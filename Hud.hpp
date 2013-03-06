@@ -2,7 +2,7 @@
 #define HUD_H
 
 #include <SFML/Graphics.hpp>
-
+#include "Behaviours/KeysBehaviour.hpp"
 class Hud
 {
 	private:
@@ -10,10 +10,12 @@ class Hud
 		sf::Font font;
 		sf::Texture marvinTex;
 		sf::Sprite marvin;
-	public:
-		Hud( sf::RenderWindow * aWindow );
-		virtual ~Hud();
+		KeysBehaviour * keysBehaviour;
 
+	public:
+		Hud( sf::RenderWindow * aWindow);
+		virtual ~Hud();
+        void setKeysBehaviour(KeysBehaviour * aKeysBehaviour);
 		void draw( );
 };
 

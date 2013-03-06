@@ -2,11 +2,12 @@
 #include <sfml/window.hpp>
 
 #include "../GameObject.hpp"
-#include "../Time.hpp"
+
 
 KeysBehaviour::KeysBehaviour( GameObject * aParent , Game * aGame  )
 :	Behaviour( aParent ), game( aGame ), startFinish(0), start_time(0), lastCollider(0)
 {
+    laptimes = new std::vector<float>();
 }
 
 KeysBehaviour::~KeysBehaviour()
@@ -47,6 +48,14 @@ void KeysBehaviour::update( float step )
 
 }
 
+float KeysBehaviour::getStart_time(){
+    return start_time;
+}
+
+std::vector<float> * KeysBehaviour::getLaptimes(){
+    return laptimes;
+}
+
 void KeysBehaviour::onCollision(GameObject * aGameObject){
     //TODO check if colliding object is a checkpoint
     if(aGameObject == lastCollider ){
@@ -62,6 +71,7 @@ void KeysBehaviour::onCollision(GameObject * aGameObject){
         else if(lastCollider == startFinish){
             float lap_time = time - start_time;
             std::cout << "Laptime: " << lap_time << std::endl;
+            laptimes->push_back(lap_time);
             start_time = time;
         }
         std::cout << "Passed checkpoint on " << time << std::endl;

@@ -3,6 +3,7 @@
 
 #include "../Behaviour.hpp"
 #include "../Game.hpp"
+#include "../Time.hpp"
 
 
 class KeysBehaviour : public Behaviour
@@ -12,10 +13,12 @@ class KeysBehaviour : public Behaviour
         GameObject * lastCollider;
         GameObject * startFinish;
         float start_time;
+        std::vector<float> * laptimes;
 	public:
 		KeysBehaviour( GameObject * aParent, Game * aGame );
 		virtual ~KeysBehaviour();
-
+		float getStart_time();
+        std::vector<float> * getLaptimes();
 		virtual void update( float step );
 		virtual void onCollision(GameObject * aGameObject);
 };
