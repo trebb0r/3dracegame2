@@ -76,6 +76,8 @@ void Game::run()
 
 void Game::stop()
 {
+    window->close();
+    running = false;
 }
 
 // private functions
