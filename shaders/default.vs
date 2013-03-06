@@ -14,12 +14,12 @@ out vec2 texCoord; // uv forwarded to fs
 out float intensity;
 
 void main( void ){
-	//gl_Position = projection * view * model * vec4( vertex, 1.f );
+	gl_Position = projection * view * model * vec4( vertex, 1.f );
 
 	//some funny stuff, manipulating vertex (optically)
-	vec3 manipulatedVertex = vertex;
-	manipulatedVertex.x += manipulatedVertex.y * manipulatedVertex.y * sin( time ) *0.25;
-	gl_Position = projection * view * model * vec4( manipulatedVertex, 1.0f );
+	//vec3 manipulatedVertex = vertex;
+	//manipulatedVertex.x += manipulatedVertex.y * manipulatedVertex.y * sin( time ) *0.25;
+	//gl_Position = projection * view * model * vec4( manipulatedVertex, 1.0f );
 
 	// calc light direction
 	vec4 worldPosition = model * vec4( vertex, 1.0f ); // position of vertex in world
