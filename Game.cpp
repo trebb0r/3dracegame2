@@ -39,6 +39,7 @@ void Game::build()
 //		camera->setBehaviour( new KeysBehaviour( camera ) );
 	light = new Light( "Light", glm::vec3( 2.0f, 10.0f, 15.0f ) );
 	Mesh * suzanna = Mesh::load( "models/car.obj");
+	//Mesh * cube = Mesh::load( "models/cube.obj");
 	world = new World( "World" );
 		world->add( camera );
 		world->add( light );
@@ -54,6 +55,19 @@ void Game::build()
 //			enemy->setColorMap( Texture::load("models/monkey.jpg") );
 //			enemy->setCollider( new Collider( enemy ) );
 //			world->add( enemy );
+
+        GameObject * startFinish = new GameObject("Start Finish", glm::vec3( 0.4,0,13 ) );
+			//startFinish->setMesh( cube );
+			//startFinish->setColorMap( Texture::load("models/monkey.jpg") );
+			startFinish->setCollider( new Collider( startFinish ) );
+			world->add( startFinish );
+
+       GameObject * checkpoint = new GameObject("Checkpoint", glm::vec3( -0.5,0, -12 ) );
+			//checkpoint->setMesh( cube );
+			//checkpoint->setColorMap( Texture::load("models/monkey.jpg") );
+			checkpoint->setCollider( new Collider( checkpoint ) );
+			world->add( checkpoint );
+
 		GameObject * floor = new GameObject("Floor", glm::vec3( 0,0,0 ) );
 			floor->setMesh( Mesh::load( "models/floor.obj" ) );
 			floor->setColorMap( Texture::load( "models/racetrack.jpg" ) );

@@ -20,7 +20,8 @@ bool Collider::collides( Collider * otherCollider )
 	glm::vec3 otherLocation = otherCollider->parent->getLocation();
 	float distance = glm::distance( location, otherLocation );
 	if ( distance < radius + otherCollider->radius ) {
-		std::cout << parent->getName() << " Hits " << otherCollider->parent->getName() << std::endl;
+		//std::cout << parent->getName() << " Hits " << otherCollider->parent->getName() << std::endl;
+		parent->onCollision(otherCollider->parent);
 		return true;
 	};
 	return false;

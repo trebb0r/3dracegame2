@@ -2,9 +2,10 @@
 #include <sfml/window.hpp>
 
 #include "../GameObject.hpp"
+#include "../Time.hpp"
 
 KeysBehaviour::KeysBehaviour( GameObject * aParent , Game * aGame  )
-:	Behaviour( aParent ), game( aGame )
+:	Behaviour( aParent ), game( aGame ), startFinish(0), start_time(0), lastCollider(0)
 {
 }
 
@@ -43,5 +44,27 @@ void KeysBehaviour::update( float step )
 	parent->rotate( rotationSpeed*step, glm::vec3(0.0f, 1.0f, 0.0f ) );
 //	transformation = glm::translate( transformation, glm::vec3(0.0f, 0.0f, speed*step ) );
 //	transformation = glm::rotate( transformation, rotationSpeed*step, glm::vec3(0.0f, 1.0f, 0.0f ) );
+
+}
+
+void KeysBehaviour::onCollision(GameObject * aGameObject){
+    //TODO check if colliding object is a checkpoint
+    if(aGameObject == lastCollider ){
+        //do nothing
+    }
+    else{
+        lastCollider = aGameObject;
+        float time = Time::now();
+        if(startFinish == 0){
+            startFinish = aGameObject;
+            start_time = time;
+        }
+        else if(lastCollider == startFinish){
+            float lap_time = time - start_time;
+            std::cout << "Laptime: " << lap_time << std::endl;
+            start_time = time;
+        }
+        std::cout << "Passed checkpoint on " << time << std::endl;
+    }
 
 }
