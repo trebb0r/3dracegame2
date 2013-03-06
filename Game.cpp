@@ -43,7 +43,7 @@ void Game::build()
 		world->add( camera );
 		world->add( light );
 		GameObject * player = new GameObject("Player", glm::vec3( 0.0f, 0.0f, 19.0f ));
-			player->setBehaviour( new KeysBehaviour( player ) );
+			player->setBehaviour( new KeysBehaviour( player , this) );
 			player->setMesh( suzanna );
 			player->setColorMap( Texture::load("models/bricks.jpg") );
 			player->setCollider( new Collider( player ) );
@@ -56,7 +56,7 @@ void Game::build()
 //			world->add( enemy );
 		GameObject * floor = new GameObject("Floor", glm::vec3( 0,0,0 ) );
 			floor->setMesh( Mesh::load( "models/floor.obj" ) );
-			floor->setColorMap( Texture::load( "models/land.jpg" ) );
+			floor->setColorMap( Texture::load( "models/racetrack.jpg" ) );
 			world->add( floor );
 }
 
