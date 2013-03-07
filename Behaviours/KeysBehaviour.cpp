@@ -2,10 +2,11 @@
 #include <sfml/window.hpp>
 
 #include "../GameObject.hpp"
+#include <math.h>
 
 
-KeysBehaviour::KeysBehaviour( GameObject * aParent , Game * aGame  )
-:	Behaviour( aParent ), game( aGame ), startFinish(0), start_time(0), lastCollider(0)
+KeysBehaviour::KeysBehaviour( RaceCar * aRaceCar , Game * aGame  )
+:	Behaviour( aRaceCar ), raceCar(aRaceCar), game( aGame ), startFinish(0), start_time(0), lastCollider(0)
 {
     laptimes = new std::vector<float>();
 }
@@ -16,36 +17,40 @@ KeysBehaviour::~KeysBehaviour()
 
 void KeysBehaviour::update( float step )
 {
-	float speed = 0.0f; //default if no keys
-	float rotationSpeed = 0.0f;
-	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Down )) {
-		speed = 10.0f;
-		//transformation =  glm::translate( transformation, glm::vec3(0.0f, 0.0f, -10.0f*step ) );
-	}
-	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Up )) {
-		speed = -10.0f;
-		//transformation =  glm::translate( transformation, glm::vec3(0.0f, 0.0f, 10.0f*step ) );
-	}
-	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Right )) {
-		rotationSpeed = -135.0f;
-		//transformation = glm::rotate( transformation, -135*step, glm::vec3(0.0f, 1.0f, 0.0f ) );
-	}
-	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Left )) {
-		rotationSpeed = +135.0f;
-		//transformation = glm::rotate( transformation, 135*step, glm::vec3(0.0f, 1.0f, 0.0f ) );
-	}
+    if(laptimes->size() < 3){
+        if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Down )) {
+            raceCar->raiseSpeed(1);
+        }
+        else if(raceCar->getSpeed() >= 1){
+            raceCar->brakeReverse(1);
+        }
+        if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Up )) {
+            raceCar->brakeReverse(1);
+        }
+        else if(raceCar->getSpeed() <= -1){
+            raceCar->raiseSpeed(1);
+        }
+        if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Right )) {
+            raceCar->steerRight(1);
+        }
+        if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Left )) {
+            raceCar->steerLeft(1);
+        }
+        if( sf::Keyboard::isKeyPressed( sf::Keyboard::I )){
+            std::cout << "Location of player " << parent->getLocation() << std::endl;
+        }
+        parent->translate( glm::vec3(0.0f, 0.0f, raceCar->getSpeed()*step ) );
+        if(floor( fabs( raceCar->getSpeed()))!= 0 ){
+            parent->rotate( raceCar->getSteeringAngle()*step, glm::vec3(0.0f, 1.0f, 0.0f ) );
+        }
+    }
 	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Escape )){
-        //close window
         game->stop();
 	}
-	if( sf::Keyboard::isKeyPressed( sf::Keyboard::I )){
-        std::cout << "Location of player " << parent->getLocation() << std::endl;
-	}
-	parent->translate( glm::vec3(0.0f, 0.0f, speed*step ) );
-	parent->rotate( rotationSpeed*step, glm::vec3(0.0f, 1.0f, 0.0f ) );
-//	transformation = glm::translate( transformation, glm::vec3(0.0f, 0.0f, speed*step ) );
-//	transformation = glm::rotate( transformation, rotationSpeed*step, glm::vec3(0.0f, 1.0f, 0.0f ) );
+}
 
+float KeysBehaviour::getAngle(){
+    return raceCar->getSteeringAngle();
 }
 
 float KeysBehaviour::getStart_time(){
@@ -54,6 +59,10 @@ float KeysBehaviour::getStart_time(){
 
 std::vector<float> * KeysBehaviour::getLaptimes(){
     return laptimes;
+}
+
+float KeysBehaviour::getSpeed(){
+    return raceCar->getSpeed();
 }
 
 void KeysBehaviour::onCollision(GameObject * aGameObject){

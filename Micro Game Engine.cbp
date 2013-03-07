@@ -2,13 +2,13 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Micro Game Engine" />
+		<Option title="Racegame2" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Windows">
-				<Option output="bin\Windows\Micro Game Engine" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Windows\" />
+				<Option output="bin/Windows/Micro Game Engine" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Windows/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -21,8 +21,8 @@
 				</Linker>
 			</Target>
 			<Target title="Linux">
-				<Option output="bin\Linux\Micro Game Engine" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Linux\" />
+				<Option output="bin/Linux/Micro Game Engine" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Linux/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -44,12 +44,12 @@
 		</Linker>
 		<Unit filename="Behaviour.cpp" />
 		<Unit filename="Behaviour.hpp" />
-		<Unit filename="Behaviours\KeysBehaviour.cpp" />
-		<Unit filename="Behaviours\KeysBehaviour.hpp" />
-		<Unit filename="Behaviours\RotatingBehaviour.cpp" />
-		<Unit filename="Behaviours\RotatingBehaviour.hpp" />
-		<Unit filename="Behaviours\WASDBehaviour.cpp" />
-		<Unit filename="Behaviours\WASDBehaviour.hpp" />
+		<Unit filename="Behaviours/KeysBehaviour.cpp" />
+		<Unit filename="Behaviours/KeysBehaviour.hpp" />
+		<Unit filename="Behaviours/RotatingBehaviour.cpp" />
+		<Unit filename="Behaviours/RotatingBehaviour.hpp" />
+		<Unit filename="Behaviours/WASDBehaviour.cpp" />
+		<Unit filename="Behaviours/WASDBehaviour.hpp" />
 		<Unit filename="Camera.cpp" />
 		<Unit filename="Camera.hpp" />
 		<Unit filename="Collider.cpp" />
@@ -66,6 +66,8 @@
 		<Unit filename="Light.hpp" />
 		<Unit filename="Mesh.cpp" />
 		<Unit filename="Mesh.hpp" />
+		<Unit filename="RaceCar.cpp" />
+		<Unit filename="RaceCar.h" />
 		<Unit filename="Renderer.cpp" />
 		<Unit filename="Renderer.hpp" />
 		<Unit filename="ShaderProgram.cpp" />
@@ -78,13 +80,14 @@
 		<Unit filename="World.hpp" />
 		<Unit filename="glm.hpp" />
 		<Unit filename="main.cpp" />
-		<Unit filename="shaders\bumpmapping.fs" />
-		<Unit filename="shaders\bumpmapping.vs" />
-		<Unit filename="shaders\default.fs" />
-		<Unit filename="shaders\default.vs" />
+		<Unit filename="shaders/bumpmapping.fs" />
+		<Unit filename="shaders/bumpmapping.vs" />
+		<Unit filename="shaders/default.fs" />
+		<Unit filename="shaders/default.vs" />
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

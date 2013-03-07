@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include "RaceCar.h"
 
 class Hud;
 class Renderer;

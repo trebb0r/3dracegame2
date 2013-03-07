@@ -48,7 +48,6 @@ void Hud::draw()
             sprintf( laptime, "Time: %2.1f", current_time );
         }
         sf::Text laptext( laptime );
-        //text.setFont(font);
         laptext.setCharacterSize(20);
         laptext.setStyle(sf::Text::Bold);
         laptext.setColor(sf::Color::White);
@@ -56,18 +55,43 @@ void Hud::draw()
         assert ( window != NULL );
         window->draw(laptext);
 
-        //char laptimes[] = "";
-        int i = 1;
+        char steeringAngle[] = "Angle";
+        sprintf(steeringAngle, "angle: %4.2f", keysBehaviour->getAngle());
+        sf::Text angleText(steeringAngle);
+        angleText.setCharacterSize(20);
+        angleText.setColor(sf::Color::White);
+        angleText.setPosition(500,0);
+        window->draw(angleText);
+
+        char speed[] = "Speed";
+        sprintf(speed, "Speed: %4.2f km/h", -1*keysBehaviour->getSpeed());
+        sf::Text speedText(speed);
+        speedText.setCharacterSize(20);
+        speedText.setColor(sf::Color::White);
+        speedText.setPosition(500,20);
+        window->draw(speedText);
+
         std::vector<float> * lap_times = keysBehaviour->getLaptimes();
         for(unsigned int i = 1; i <= lap_times->size(); ++i) {
             char laptimes[] = "";
-            sprintf( laptimes, "%2d: %4.1f", i, (*lap_times)[i-1]);
+            if(i < 3){
+                sprintf( laptimes, "%2d: %4.1f", i, (*lap_times)[i-1]);
+            }
+            else{
+                sprintf( laptimes, "%2d: %4.1f\nPress ESC to close", i, (*lap_times)[i-1]);
+            }
             sf::Text laptimestext( laptimes );
-            //text.setFont(font);
-            laptimestext.setCharacterSize(15);
+            if(lap_times->size() < 3){
+                laptimestext.setCharacterSize(15);
+                laptimestext.setPosition( 780, i*15+10);
+            }
+            else{
+                laptimestext.setCharacterSize(40);
+                laptimestext.setPosition( 500, i*40+50);
+            }
             laptimestext.setStyle(sf::Text::Bold);
             laptimestext.setColor(sf::Color::White);
-            laptimestext.setPosition( 780, i*15+10);
+
             window->draw(laptimestext);
         }
 

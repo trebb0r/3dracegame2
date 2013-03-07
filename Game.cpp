@@ -43,7 +43,7 @@ void Game::build()
 	world = new World( "World" );
 		world->add( camera );
 		world->add( light );
-		GameObject * player = new GameObject("Player", glm::vec3( -5.5f, 0.0f, 13.0f ));
+		RaceCar * player = new RaceCar("Player", glm::vec3( -5.5f, 0.0f, 13.0f ));
             player->rotate( -90, glm::vec3(0.0f, 1.0f, 0.0f ) );
             KeysBehaviour * kb = new KeysBehaviour( player, this);
 			player->setBehaviour( kb );

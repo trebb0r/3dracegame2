@@ -12,12 +12,15 @@ class KeysBehaviour : public Behaviour
         Game * game;
         GameObject * lastCollider;
         GameObject * startFinish;
+        RaceCar * raceCar;
         float start_time;
         std::vector<float> * laptimes;
 	public:
-		KeysBehaviour( GameObject * aParent, Game * aGame );
+		KeysBehaviour( RaceCar * aParent, Game * aGame );
 		virtual ~KeysBehaviour();
 		float getStart_time();
+		float getAngle();
+		float getSpeed();
         std::vector<float> * getLaptimes();
 		virtual void update( float step );
 		virtual void onCollision(GameObject * aGameObject);
