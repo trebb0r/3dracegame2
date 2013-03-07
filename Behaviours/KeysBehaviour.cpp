@@ -15,6 +15,9 @@ KeysBehaviour::KeysBehaviour( RaceCar * aRaceCar , Game * aGame  )
     bufferIdle = new sf::SoundBuffer();
     if (!bufferIdle->loadFromFile("hotidle.wav"))
         std::cout << "ERROR hotidle.wav" << std::endl;
+    bufferAlarm = new sf::SoundBuffer();
+    if (!bufferAlarm->loadFromFile("SIREN.WAV"))
+        std::cout << "ERROR SIREN.WAV" << std::endl;
     soundBusy = new sf::Sound();
     soundBusy->setBuffer(*bufferBusy);
     soundBusy->setLoop(true);
@@ -22,6 +25,9 @@ KeysBehaviour::KeysBehaviour( RaceCar * aRaceCar , Game * aGame  )
     soundIdle->setBuffer(*bufferIdle);
     soundIdle->setLoop(true);
     soundIdle->play();
+    soundAlarm = new sf::Sound();
+    soundAlarm->setBuffer(*bufferAlarm);
+    soundAlarm->setLoop(true);
 }
 
 KeysBehaviour::~KeysBehaviour()
@@ -30,6 +36,14 @@ KeysBehaviour::~KeysBehaviour()
 
 void KeysBehaviour::update( float step )
 {
+    if(outOfMap()){
+        if(soundAlarm->getStatus() != 2){
+           soundAlarm->play();
+        }
+    }
+    else if(soundAlarm->getStatus() == 2){
+        soundAlarm->pause();
+    }
     if(raceCar->getSpeed() == 0){
         if(soundBusy->getStatus() == 2){
             soundBusy->pause();
@@ -86,6 +100,22 @@ std::vector<float> * KeysBehaviour::getLaptimes(){
 
 float KeysBehaviour::getSpeed(){
     return raceCar->getSpeed();
+}
+
+bool KeysBehaviour::outOfMap(){
+    if(raceCar->getLocation().x > 15 ){
+        return true;
+    }
+    if(raceCar->getLocation().x < -15 ){
+        return true;
+    }
+    if(raceCar->getLocation().z > 15){
+        return true;
+    }
+    if(raceCar->getLocation().z < -15){
+        return true;
+    }
+    return false;
 }
 
 void KeysBehaviour::onCollision(GameObject * aGameObject){

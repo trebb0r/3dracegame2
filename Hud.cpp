@@ -94,6 +94,19 @@ void Hud::draw()
 
             window->draw(laptimestext);
         }
+        sf::Text outOfMapText;
+        if(keysBehaviour->outOfMap()){
+            outOfMapText.setString("Keer terug binnen de map!\nHet alarm zal dan stoppen...");
+            outOfMapText.setPosition(300,300);
+        }
+        else{
+             outOfMapText.setString("binnen de map :)");
+             outOfMapText.setPosition(10,40);
+        }
+        outOfMapText.setCharacterSize(20);
+        outOfMapText.setColor(sf::Color::White);
+
+        window->draw(outOfMapText);
     }
 	// Draw it
 	//std::cout << "Drawing text" << std::endl;
