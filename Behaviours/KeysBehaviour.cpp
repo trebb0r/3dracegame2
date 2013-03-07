@@ -9,6 +9,11 @@ KeysBehaviour::KeysBehaviour( RaceCar * aRaceCar , Game * aGame  )
 :	Behaviour( aRaceCar ), raceCar(aRaceCar), game( aGame ), startFinish(0), start_time(0), lastCollider(0)
 {
     laptimes = new std::vector<float>();
+    buffer = new sf::SoundBuffer();
+    if (!buffer->loadFromFile("lala.wav"))
+        std::cout << "ERROR" << std::endl;
+    sound = new sf::Sound();
+    sound->setBuffer(*buffer);
 }
 
 KeysBehaviour::~KeysBehaviour()
@@ -46,6 +51,11 @@ void KeysBehaviour::update( float step )
     }
 	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Escape )){
         game->stop();
+	}
+	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::P)){
+        if(sound->getStatus() != 2){
+            sound->play();
+        }
 	}
 }
 

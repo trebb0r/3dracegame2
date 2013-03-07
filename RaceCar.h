@@ -2,6 +2,7 @@
 #define RACECAR_H
 
 #include "GameObject.hpp"
+#include "Time.hpp"
 
 
 class RaceCar : public GameObject
@@ -15,6 +16,7 @@ class RaceCar : public GameObject
         void steerRight(float angle);
         void raiseSpeed(float speedRaise);
         void brakeReverse(float brakePower);
+        virtual void onCollision(GameObject * aGameObject);
     protected:
     private:
         const static float maxSpeed = 5;
@@ -23,6 +25,9 @@ class RaceCar : public GameObject
         float speed;
         float steeringAngle;
         std::vector<float> * lapTimes;
+        GameObject * lastCheckpoint;
+        GameObject * startFinish;
+        float start_time;
 };
 
 #endif // RACECAR_H

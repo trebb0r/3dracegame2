@@ -4,6 +4,8 @@ RaceCar::RaceCar(std::string aName , glm::vec3 aPosition ) : GameObject(aName, a
 {
     //ctor
     lapTimes = new std::vector<float>();
+    lastCheckpoint = 0;
+    startFinish = 0;
 }
 
 RaceCar::~RaceCar()
@@ -63,4 +65,27 @@ void RaceCar::steerRight(float angle){
     else {
         steeringAngle -= angle;
     }
+}
+
+void RaceCar::onCollision(GameObject * aGameObject){
+    GameObject::onCollision(aGameObject);
+    //TODO check if colliding object is a checkpoint
+    //if(aGameObject == lastCheckpoint ){
+     //   //do nothing
+    //}
+    //else{
+        //lastCheckpoint = aGameObject;
+        //float time = Time::now();
+        //if(startFinish == 0){
+        //    startFinish = aGameObject;
+        //    start_time = time;
+        //}
+        //else if(lastCheckpoint == startFinish){
+            //float lap_time = time - start_time;
+            //std::cout << "Laptime: " << lap_time << std::endl;
+           // laptimes->push_back(lap_time);
+         //   start_time = time;
+        //}
+        //std::cout << "Passed checkpoint on " << time << std::endl;
+    //}
 }

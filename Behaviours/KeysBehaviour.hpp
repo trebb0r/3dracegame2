@@ -4,6 +4,7 @@
 #include "../Behaviour.hpp"
 #include "../Game.hpp"
 #include "../Time.hpp"
+#include <SFML/Audio.hpp>
 
 
 class KeysBehaviour : public Behaviour
@@ -15,6 +16,8 @@ class KeysBehaviour : public Behaviour
         float start_time;
         GameObject * lastCollider;
         std::vector<float> * laptimes;
+        sf::SoundBuffer * buffer;
+        sf::Sound * sound;
 	public:
 		KeysBehaviour( RaceCar * aParent, Game * aGame );
 		virtual ~KeysBehaviour();
