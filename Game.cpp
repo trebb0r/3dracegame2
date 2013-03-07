@@ -13,6 +13,7 @@
 #include "Mesh.hpp"
 #include "Texture.hpp"
 #include "Behaviours/KeysBehaviour.hpp"
+#include "Behaviours/KeysBehaviourWheels.h"
 #include "Behaviours/WASDBehaviour.hpp"
 #include "Behaviours/RotatingBehaviour.hpp"
 #include "Collider.hpp"
@@ -38,8 +39,8 @@ void Game::build()
 	camera = new Camera( "Camera", glm::vec3( 0.0f, 20.0f, 25.0f ) );
 //		camera->setBehaviour( new KeysBehaviour( camera ) );
 	light = new Light( "Light", glm::vec3( 20.0f, 20.0f, 20.0f ) );
-	Mesh * suzanna = Mesh::load( "models/car.obj");
-	//Mesh * cube = Mesh::load( "models/cube.obj");
+	Mesh * car_no_wheels = Mesh::load( "models/car_no_wheels.obj");
+	Mesh * cube = Mesh::load( "models/wheels.obj");
 	world = new World( "World" );
 		world->add( camera );
 		world->add( light );
@@ -48,16 +49,18 @@ void Game::build()
             KeysBehaviour * kb = new KeysBehaviour( player, this);
 			player->setBehaviour( kb );
 			hud->setKeysBehaviour( kb );
-			player->setMesh( suzanna );
+			player->setMesh( car_no_wheels );
 			player->setColorMap( Texture::load("models/bricks.jpg") );
 			player->setCollider( new Collider( player, 4 ) );
 			world->add( player  );
-//		GameObject * enemy = new GameObject("Enemy", glm::vec3( 2,0,-5 ) );
-//			enemy->setBehaviour( new KeysBehaviour( enemy ) );
-//			enemy->setMesh( suzanna );
-//			enemy->setColorMap( Texture::load("models/monkey.jpg") );
-//			enemy->setCollider( new Collider( enemy ) );
-//			world->add( enemy );
+		RaceWheels * wheels = new RaceWheels("Enemy", glm::vec3( -5.5f, 0.0f, 13.0f ) );
+            wheels->rotate( -90, glm::vec3(0.0f, 1.0f, 0.0f ) );
+            KeysBehaviourWheels * kb2 = new KeysBehaviourWheels( wheels, this);
+			wheels->setBehaviour( kb2 );
+			wheels->setMesh( cube );
+			wheels->setColorMap( Texture::load("models/monkey.jpg") );
+			wheels->setCollider( new Collider( wheels, 4 ) );
+			world->add( wheels );
 
         GameObject * startFinish = new GameObject("Start Finish", glm::vec3( 0.4,0,13 ) );
 			//startFinish->setMesh( cube );
