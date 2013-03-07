@@ -16,8 +16,10 @@ class KeysBehaviour : public Behaviour
         float start_time;
         GameObject * lastCollider;
         std::vector<float> * laptimes;
-        sf::SoundBuffer * buffer;
-        sf::Sound * sound;
+        sf::SoundBuffer * bufferBusy;
+        sf::SoundBuffer * bufferIdle;
+        sf::Sound * soundIdle;
+        sf::Sound * soundBusy;
 	public:
 		KeysBehaviour( RaceCar * aParent, Game * aGame );
 		virtual ~KeysBehaviour();
