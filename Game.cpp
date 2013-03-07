@@ -35,7 +35,7 @@ Game::~Game()
 void Game::build()
 {
 	renderer->use(  new ShaderProgram( "shaders/default.vs", "shaders/default.fs" ) );
-	camera = new Camera( "Camera", glm::vec3( 0.0f, 20.0f, 20.0f ) );
+	camera = new Camera( "Camera", glm::vec3( 0.0f, 20.0f, 25.0f ) );
 //		camera->setBehaviour( new KeysBehaviour( camera ) );
 	light = new Light( "Light", glm::vec3( 20.0f, 20.0f, 20.0f ) );
 	Mesh * suzanna = Mesh::load( "models/car.obj");
