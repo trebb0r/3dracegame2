@@ -9,11 +9,11 @@
 class KeysBehaviour : public Behaviour
 {
     private:
-        Game * game;
-        GameObject * lastCollider;
-        GameObject * startFinish;
         RaceCar * raceCar;
+        Game * game;
+        GameObject * startFinish;
         float start_time;
+        GameObject * lastCollider;
         std::vector<float> * laptimes;
 	public:
 		KeysBehaviour( RaceCar * aParent, Game * aGame );

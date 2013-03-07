@@ -94,14 +94,10 @@ void Hud::draw()
 
             window->draw(laptimestext);
         }
-
-
-        }
-
+    }
 	// Draw it
 	//std::cout << "Drawing text" << std::endl;
 	assert ( window != NULL );
 	window->draw( marvin );
 	window->draw(text);
-
 }
