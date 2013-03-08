@@ -58,14 +58,14 @@ void KeysBehaviour::update( float step )
         if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Down )) {
             raceCar->raiseSpeed(1);
         }
-        else if(raceCar->getSpeed() >= 1){
-            raceCar->brakeReverse(1);
+        else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && raceCar->getSpeed() > 0){
+            raceCar->brakeReverse(0.1);
         }
         if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Up )) {
             raceCar->brakeReverse(1);
         }
-        else if(raceCar->getSpeed() <= -1){
-            raceCar->raiseSpeed(1);
+        else if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && raceCar->getSpeed() < 0){
+            raceCar->raiseSpeed(0.1);
         }
         if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Right )) {
             raceCar->steerRight(1);

@@ -53,15 +53,13 @@ void Game::build()
 			player->setColorMap( Texture::load("models/bricks.jpg") );
 			player->setCollider( new Collider( player, 4 ) );
 			world->add( player  );
-		RaceWheels * wheels = new RaceWheels("Enemy", glm::vec3( -5.5f, 0.0f, 13.0f ) );
-            wheels->rotate( -90, glm::vec3(0.0f, 1.0f, 0.0f ) );
-            KeysBehaviourWheels * kb2 = new KeysBehaviourWheels( wheels, this);
+		GameObject * wheels = new GameObject("Wheels", glm::vec3( 0, 0, 0 ) );
+            KeysBehaviourWheels * kb2 = new KeysBehaviourWheels( wheels, player);
 			wheels->setBehaviour( kb2 );
 			wheels->setMesh( cube );
 			wheels->setColorMap( Texture::load("models/monkey.jpg") );
 			wheels->setCollider( new Collider( wheels, 4 ) );
-			world->add( wheels );
-
+			player->add( wheels );
         GameObject * startFinish = new GameObject("Start Finish", glm::vec3( 0.4,0,13 ) );
 			//startFinish->setMesh( cube );
 			//startFinish->setColorMap( Texture::load("models/monkey.jpg") );

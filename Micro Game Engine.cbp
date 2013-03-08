@@ -48,6 +48,7 @@
 		<Unit filename="Behaviours/KeysBehaviour.cpp" />
 		<Unit filename="Behaviours/KeysBehaviour.hpp" />
 		<Unit filename="Behaviours/KeysBehaviourWheels.cpp" />
+		<Unit filename="Behaviours/KeysBehaviourWheels.h" />
 		<Unit filename="Behaviours/RotatingBehaviour.cpp" />
 		<Unit filename="Behaviours/RotatingBehaviour.hpp" />
 		<Unit filename="Behaviours/WASDBehaviour.cpp" />

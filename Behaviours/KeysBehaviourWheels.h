@@ -10,25 +10,12 @@
 class KeysBehaviourWheels : public Behaviour
 {
     private:
-        RaceWheels * raceWheels;
-        Game * game;
-        GameObject * startFinish;
-        float start_time;
-        GameObject * lastCollider;
-        std::vector<float> * laptimes;
-        sf::SoundBuffer * bufferBusy;
-        sf::SoundBuffer * bufferIdle;
-        sf::Sound * soundIdle;
-        sf::Sound * soundBusy;
+        RaceCar * raceCar;
+
 	public:
-		KeysBehaviourWheels( RaceWheels * aParent, Game * aGame );
+		KeysBehaviourWheels( GameObject * aParent, RaceCar * aRaceCar );
 		virtual ~KeysBehaviourWheels();
-		float getStart_time();
-		float getAngle();
-		float getSpeed();
-        std::vector<float> * getLaptimes();
 		virtual void update( float step );
-		virtual void onCollision(GameObject * aGameObject);
 };
 
 #endif // KEYSBEHAVIOURWHEELS_H
