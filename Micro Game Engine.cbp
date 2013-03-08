@@ -47,6 +47,7 @@
 		<Unit filename="Behaviour.hpp" />
 		<Unit filename="Behaviours/KeysBehaviour.cpp" />
 		<Unit filename="Behaviours/KeysBehaviour.hpp" />
+		<Unit filename="Behaviours/KeysBehaviourWheels.cpp" />
 		<Unit filename="Behaviours/RotatingBehaviour.cpp" />
 		<Unit filename="Behaviours/RotatingBehaviour.hpp" />
 		<Unit filename="Behaviours/WASDBehaviour.cpp" />
@@ -69,6 +70,7 @@
 		<Unit filename="Mesh.hpp" />
 		<Unit filename="RaceCar.cpp" />
 		<Unit filename="RaceCar.h" />
+		<Unit filename="RaceWheels.cpp" />
 		<Unit filename="Renderer.cpp" />
 		<Unit filename="Renderer.hpp" />
 		<Unit filename="ShaderProgram.cpp" />

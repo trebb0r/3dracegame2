@@ -49,7 +49,7 @@ void KeysBehaviourWheels::update( float step )
         }
         if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Up )) {
             raceWheels->brakeReverse(1);
-            parent->rotate( raceWheels->getSteeringAngle()*step, glm::vec3(0.0f, 1.0f, 0.0f ) );
+            parent->rotate( raceWheels->getSteeringAngle()*step, glm::vec3(step * 45, 1.0f, 0.0f ) );
         }
         else if(raceWheels->getSpeed() <= -1){
             raceWheels->raiseSpeed(1);
@@ -65,7 +65,7 @@ void KeysBehaviourWheels::update( float step )
         }
         parent->translate( glm::vec3(0.0f, 0.0f, raceWheels->getSpeed()*step ) );
         if(floor( fabs( raceWheels->getSpeed()))!= 0 ){
-           // parent->rotate( raceWheels->getSteeringAngle()*step, glm::vec3(0.0f, 1.0f, 0.0f ) );
+            parent->rotate( raceWheels->getSteeringAngle()*step, glm::vec3(0.0f, 1.0f, 0.0f ) );
         }
     }
 	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Escape )){
