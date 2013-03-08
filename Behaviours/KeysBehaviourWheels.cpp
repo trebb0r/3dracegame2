@@ -17,5 +17,5 @@ KeysBehaviourWheels::~KeysBehaviourWheels()
 void KeysBehaviourWheels::update( float step )
 {
     float speed = raceCar->getSpeed();
-    parent->rotate( step * speed, glm::vec3( 1.0f, 0.0f, 0.0f ) );
+    parent->rotate( step * speed * 20, glm::vec3( 1.0f, 0.0f, 0.0f ) );
 }
