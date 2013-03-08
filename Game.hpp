@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "RaceCar.h"
-#include "RaceWheels.h"
 
 class Hud;
 class Renderer;
