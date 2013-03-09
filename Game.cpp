@@ -36,14 +36,18 @@ Game::~Game()
 void Game::build()
 {
 	renderer->use(  new ShaderProgram( "shaders/default.vs", "shaders/default.fs" ) );
-	camera = new Camera( "Camera", glm::vec3( 0.0f, 20.0f, 25.0f ) );
-//		camera->setBehaviour( new KeysBehaviour( camera ) );
-	light = new Light( "Light", glm::vec3( 20.0f, 20.0f, 20.0f ) );
+	camera = new Camera( "Camera", glm::vec3( 0.0f, 19.0f, 19.0f ) );
+		camera->setBehaviour( new RotatingBehaviour( camera ) );
+	light = new Light( "Light", glm::vec3( 0.0f, 19.0f, 19.0f ) );
+
 	Mesh * car_no_wheels = Mesh::load( "models/car_no_wheels.obj");
-	Mesh * cube = Mesh::load( "models/2wheels.obj");
+	Mesh * wheelMesh = Mesh::load( "models/2wheels.obj");
+	Mesh * cubeMesh = Mesh::load( "models/skybox-40.obj");
+
 	world = new World( "World" );
 		world->add( camera );
 		world->add( light );
+
 		RaceCar * player = new RaceCar("Player", glm::vec3( -5.5f, 0.0f, 13.0f ));
             player->rotate( -90, glm::vec3(0.0f, 1.0f, 0.0f ) );
             KeysBehaviour * kb = new KeysBehaviour( player, this);
@@ -56,16 +60,14 @@ void Game::build()
 		GameObject * wheels = new GameObject("Wheels", glm::vec3( 0, 2, -3.5 ) );
             KeysBehaviourWheels * kb2 = new KeysBehaviourWheels( wheels, player);
 			wheels->setBehaviour( kb2 );
-			wheels->setMesh( cube );
+			wheels->setMesh( wheelMesh );
 			wheels->setColorMap( Texture::load("models/monkey.jpg") );
-			wheels->setCollider( new Collider( wheels, 4 ) );
 			player->add( wheels );
 		GameObject * wheels2 = new GameObject("Wheels2", glm::vec3( 0, 2, 2.5 ) );
             KeysBehaviourWheels * kb3 = new KeysBehaviourWheels( wheels2, player);
 			wheels2->setBehaviour( kb3 );
-			wheels2->setMesh( cube );
+			wheels2->setMesh( wheelMesh );
 			wheels2->setColorMap( Texture::load("models/monkey.jpg") );
-			wheels2->setCollider( new Collider( wheels2, 4 ) );
 			player->add( wheels2 );
         GameObject * startFinish = new GameObject("Start Finish", glm::vec3( 0.4,0,13 ) );
 			//startFinish->setMesh( cube );
@@ -78,7 +80,10 @@ void Game::build()
 			//checkpoint->setColorMap( Texture::load("models/monkey.jpg") );
 			checkpoint->setCollider( new Collider( checkpoint ) );
 			world->add( checkpoint );
-
+        GameObject * cube = new GameObject("Cube", glm::vec3(0.0f,0.0f,0.0f));
+            cube->setMesh(cubeMesh);
+            cube->setColorMap( Texture::load("models/skybox.jpg"));
+            world->add(cube);
 		GameObject * floor = new GameObject("Floor", glm::vec3( 0,0,0 ) );
 			floor->setMesh( Mesh::load( "models/floor.obj" ) );
 			floor->setColorMap( Texture::load( "models/racetrack.jpg" ) );
